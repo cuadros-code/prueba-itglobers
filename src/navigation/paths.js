@@ -1,5 +1,10 @@
 export const paths = [
   {
+    id   : 0,
+    title: 'Inicio',
+    route: '/'
+  },
+  {
     id   : 1,
     title: 'Emirates',
     route: '/emirates'
@@ -15,7 +20,7 @@ export const paths = [
     route: '/latam'
   },
   {
-    id   : 3,
+    id   : 4,
     title: 'Iberia',
     route: '/iberia'
   },

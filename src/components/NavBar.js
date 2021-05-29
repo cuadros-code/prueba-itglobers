@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { paths } from '../navigation/paths'
+import { Link } from 'react-router-dom'
+
 
 const NavBar = () => {
 
@@ -16,8 +18,15 @@ const NavBar = () => {
       <Nav menu={buttonMenu}>
         <Ul>
             {
-              paths.map((path, index) => (
-                <Li onClick={() => setButtonMenu(false)} key={index} >{path.title}</Li>
+              paths.map((path) => (
+                  <Link 
+                    to={path.route} 
+                    key={path.id}
+                  >
+                    <Li onClick={() => setButtonMenu(false)}  >
+                      {path.title}
+                    </Li>
+                  </Link>
                 ))
               }
         </Ul>
@@ -64,7 +73,7 @@ const Li = styled.li`
   font-size: 1.1rem;
   cursor: pointer;
   color: #fff;
-  padding: 4px 10px;
+  padding: 5px 15px;
   border-radius: 10px;
 
   :hover{
