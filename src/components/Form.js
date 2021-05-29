@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import validateForm from '../helpers/validateForm'
 import useForm from '../hooks/useForm'
+import SuccessMessage from './SuccessMessage'
 
 const FormComponent = () => {
 
@@ -17,8 +18,16 @@ const FormComponent = () => {
       return
     }
     console.log(valueForm)
+    showMessage()
     resetForm()
   }
+
+  const showMessage = () => {
+    return(
+      <SuccessMessage />
+    )
+  }
+  
 
   return (
     <ContainerForm>
