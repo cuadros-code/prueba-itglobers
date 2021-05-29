@@ -1,98 +1,88 @@
-import { useState } from 'react'
 import styled from 'styled-components'
-import validateForm from '../helpers/validateForm'
 import useForm from '../hooks/useForm'
 import SuccessMessage from './SuccessMessage'
 
 const FormComponent = () => {
 
-  const [errors, setErrors] = useState({})
-  const { valueForm, onChange, resetForm } = useForm({ name:'', email:'', phone:'', age:'' })
+  const { valueForm, 
+          onChange, 
+          onSubmitForm, 
+          errors,
+          isShowMessage } = useForm({ name:'', email:'', phone:'', age:'' })
+
   const { name, email, phone, age } = valueForm
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const err = validateForm(valueForm)
-    setErrors(err)
-    if(Object.keys(err).length > 0) {
-      return
-    }
-    console.log(valueForm)
-    showMessage()
-    resetForm()
-  }
-
-  const showMessage = () => {
-    return(
-      <SuccessMessage />
-    )
-  }
-  
-
   return (
-    <ContainerForm>
-      <Form onSubmit={handleSubmit} >
-        <ContentField>
-          <Label htmlFor="name" >Nombre completo<Required>*</Required></Label>
-          <Input 
-            name="name"
-            onChange={onChange} 
-            value={name} 
-            placeholder="Nombre completo" 
-            id="name" 
-            type="text" />
-            {
-              errors.name
-              && <Alert>{errors.name}</Alert>
-            }
-        </ContentField>
-        <ContentField>
-          <Label htmlFor="email" >Email<Required>*</Required></Label>
-          <Input 
-            name="email"
-            onChange={onChange} 
-            value={email} 
-            id="email" 
-            placeholder="Email"
-            type="email" />
-            {
-              errors.email
-              && <Alert>{errors.email}</Alert>
-            }
-        </ContentField>
-        <ContentField>
-          <Label htmlFor="phone" >Celular<Required>*</Required></Label>
-          <Input 
-            name="phone"
-            onChange={onChange} 
-            value={phone} 
-            id="phone" 
-            placeholder="Celular" 
-            type="number" />
-            {
-              errors.phone
-              && <Alert>{errors.phone}</Alert>
-            }
-        </ContentField>
-        <ContentField>
-          <Label htmlFor="age" >Edad<Required>*</Required></Label>
-          <Input 
-            name="age"
-            onChange={onChange} 
-            value={age}  
-            id="age" 
-            placeholder="Edad" 
-            type="number" 
-            min="18" 
-            max="100"/>
-            {
-              errors.age
-              && <Alert>{errors.age}</Alert>
-            }
-        </ContentField>
-        <Button type="submit" >Enviar datos</Button>
-      </Form>
-    </ContainerForm>
+    <>
+      <ContainerForm>
+        <Form onSubmit={onSubmitForm} >
+          <ContentField>
+            <Label htmlFor="name" >Nombre completo<Required>*</Required></Label>
+            <Input 
+              name="name"
+              onChange={onChange} 
+              value={name} 
+              placeholder="Nombre completo" 
+              id="name" 
+              type="text" />
+              {
+                errors.name
+                && <Alert>{errors.name}</Alert>
+              }
+          </ContentField>
+          <ContentField>
+            <Label htmlFor="email" >Email<Required>*</Required></Label>
+            <Input 
+              name="email"
+              onChange={onChange} 
+              value={email} 
+              id="email" 
+              placeholder="Email"
+              type="email" />
+              {
+                errors.email
+                && <Alert>{errors.email}</Alert>
+              }
+          </ContentField>
+          <ContentField>
+            <Label htmlFor="phone" >Celular<Required>*</Required></Label>
+            <Input 
+              name="phone"
+              onChange={onChange} 
+              value={phone} 
+              id="phone" 
+              placeholder="Celular" 
+              type="number" />
+              {
+                errors.phone
+                && <Alert>{errors.phone}</Alert>
+              }
+          </ContentField>
+          <ContentField>
+            <Label htmlFor="age" >Edad<Required>*</Required></Label>
+            <Input 
+              name="age"
+              onChange={onChange} 
+              value={age}  
+              id="age" 
+              placeholder="Edad" 
+              type="number" 
+              min="18" 
+              max="100"/>
+              {
+                errors.age
+                && <Alert>{errors.age}</Alert>
+              }
+          </ContentField>
+          <Button type="submit" >Enviar datos</Button>
+        </Form>
+      </ContainerForm>
+        {
+          isShowMessage
+          &&
+          <SuccessMessage />
+        }
+    </>
   )
 }
 

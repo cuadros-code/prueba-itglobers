@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Home = () => {
   return (
     <Container>
-      <h2>Bienvenido a tus viajes.com</h2>
+      <h2>Bienvenido, elige el plan a tu gusto.</h2>
     </Container>
   )
 }

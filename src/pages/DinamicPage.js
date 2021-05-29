@@ -22,16 +22,12 @@ export default DinamicPage
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 30px;
+  padding: 0 30px 40px 30px;
   flex-direction: column;
   align-items: center;
 
-  h1{
-    /* margin: 0; */
-  }
-
   h3{
-    margin: 5px 0 30px 0;
+    margin: 5px 0 15px 0;
   }
 `
 
